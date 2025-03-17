@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sonar": {
+      "commandName": "Project",
+      "workingDirectory": "."
+    }
+  }
+}
