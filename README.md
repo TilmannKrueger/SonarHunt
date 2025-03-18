@@ -94,12 +94,12 @@ Execution starts - as in all serious programs - in a static method named "Main".
 1. Enter the game loop
 1. Print the game results
 
-#### The game state
+### The game state
 
 The state consists out of the player x/y position, the target x/y position, and the game grid dimensions, with each of this six values 
 stored as an int. Another int is used to store the step count, which acts as the player score.
 
-#### The game loop
+### The game loop
 
 The game loop is the heart of the actual game: Here, the player input is transformed into updates of the game state. Most of the 
 work in the game loop is done in the Sonar.SonarHuntGame.MakeTurn() method. Here, a prompt is printed, informing the player about 
