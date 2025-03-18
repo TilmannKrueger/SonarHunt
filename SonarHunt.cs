@@ -1,4 +1,5 @@
 ﻿using System.Media;
+using System.Reflection;
 
 // This is a Windows-only game, due to the use of SoundPlayer, so we disable the warning
 #pragma warning disable CA1416
@@ -28,7 +29,7 @@ namespace Sonar
             {   
                 ClearConsoleInputQueue();
                 Console.WriteLine();
-                Console.Write("Play again (y/n)?");
+                Console.Write("Play again (y/n)? ");
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
 
                 return keyInfo.Key == ConsoleKey.Y;
@@ -51,27 +52,40 @@ namespace Sonar
                 typeSound.PlayLooping();
                 foreach (char c in line)
                 {
-                    Console.Write(c);
-                    Thread.Sleep(2);
+                    int delay = 2;
+                    if (c == '\n')
+                    {
+                        delay = 100;
+                        typeSound.Stop();
+                    }
+                    else
+                    {
+                        Console.Write(c);
+                    }
+                    Thread.Sleep(delay);
+
+                    if (c == '\n')
+                    {
+                        typeSound.PlayLooping();
+                    }
                 }
                 typeSound.Stop();
             }
-            Console.WriteLine();
-            Thread.Sleep(10);
+            Console.Write('\n');
         }
 
         // Print the game instructions
         private void PrintInstructions()
         {
-            Teletyper("1996-03-17T08:31:21-11:00 USS Greenville (SSN-772), Bering Strait");
+            Teletyper("1996-03-17T08:31:21-11:00 USS Greenville (SSN-772), Bering Strait\n");
             Teletyper();
-            Teletyper("Welcome aboard, Captain! Your mission is to find an enemy submarine hiding in a");
+            Teletyper("Welcome aboard, Captain! Your mission is to find an enemy submarine hiding in a ");
             Teletyper(string.Format("{0}nm by {1}nm area. To detect it, you can use your sonar rangefinder. It emits", fieldSizeX, fieldSizeY));
             Teletyper("a ping that is reflected by the sub. Move your boat across the search area and");
             Teletyper("listen carefully how fast the echo comes back. It is absolutely important that you");
-            Teletyper("find the enemy as soon as possible!");
+            Teletyper("find the enemy as soon as possible!\n");
             Teletyper();
-            Teletyper("Good Luck!");
+            Teletyper("Good Luck!\n");
             Teletyper();
         }
 
@@ -249,7 +263,7 @@ namespace Sonar
                 }
 
                 // print the victory message
-                game.Teletyper(string.Format("Congratulations! You found the enemey submarine at ({0}, {1}) in {2} steps!", game.targetY, game.targetX, game.steps));
+                game.Teletyper(string.Format("Congratulations! You found the enemey submarine at ({0}, {1}) in {2} steps!\n", game.targetY, game.targetX, game.steps));
                 
             } while (PlayAgain); // start over, if player selects 'y'
         }

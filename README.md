@@ -106,3 +106,13 @@ command. E.g. if the 'n' key was pressed, which means "move north", the Y positi
 that the northern direction corresponds with the positive Y axis). Of course, the update of player position is skipped if the 
 player was already on the northern edge of the playing field. And note that the step count is only updated when the player 
 input actually resulted in a player move.
+
+### The teletyper "special effect"
+
+This emulates how Hollywood imagines data transmissions. It also has a profound 80ties vibe.
+
+The effect works by iterating over each character in a string. Each character is then sent to the console, after a little delay.
+Meanwhile, the typewriter sound file is played in a loop (which means it starts over when it played to the end). 
+
+And as a little gimmik, when a newline character ('\n') is encountered, the delay is increased and the sound playback is paused.
+Note that the '\n' is not actually sent to the console, instead one newline will be printed after one string is finished.
