@@ -2,7 +2,7 @@
 Very simple console game: Find an enemy submarine in dephts of the ocean, using pings only!
 
 I had a similar game, written in BASIC, when I was a kid. It was one of the first programs I really understood,
-and I learned a lot modifying it. So I figured it would be a good choice for others to start programming.
+and I learned a lot by modifying it. So I figured it would be a good choice for others to start programming.
 
 Have fun!
 
