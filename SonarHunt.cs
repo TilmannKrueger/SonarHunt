@@ -25,7 +25,8 @@ namespace Sonar
         private static bool PlayAgain
         {
             get
-            {
+            {   
+                ClearConsoleInputQueue();
                 Console.WriteLine();
                 Console.Write("Play again (y/n)?");
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -34,7 +35,16 @@ namespace Sonar
             }
         }
 
-        void Teletyper(string line = "")
+        private static void ClearConsoleInputQueue ()
+        {
+            // swallow everything that is in the input queue
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(false);
+            }
+        }
+
+        private void Teletyper(string line = "")
         {
             if (line != string.Empty)
             {
@@ -74,18 +84,21 @@ namespace Sonar
 
             pingSound.Play();
             Thread.Sleep(deltaT);
-            pingSound.PlaySync();
+            pingSound.Play();
         }
 
         // let the player make his next move
         private void MakeTurn()
         {
-            Console.WriteLine("Our current position is {0} North and {1} East. Awaiting your orders, Sir.", playerX, playerY);
+            Console.WriteLine("Our current position is {0} North and {1} East. Awaiting your orders, Sir.", playerY, playerX);
             Console.WriteLine("Move (n, e, s, w) or ping (p)?");
+            ClearConsoleInputQueue();
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             Console.WriteLine();
             bool moved = false;
             bool dontMove = false;
+            // x direction is East <-> West
+            // y direction is North <-> South
             switch (keyInfo.Key)
             {
                 case ConsoleKey.N:
@@ -153,7 +166,9 @@ namespace Sonar
         // draws the splash screen
         private static void Splash()
         {
+            Console.CursorVisible = false;
             Console.Clear();
+
             Console.WriteLine("                                                                 -   @                              ");
             Console.WriteLine("        Sonar Hunt - A Submarine Game                            .   @                              ");
             Console.WriteLine("                                                               @ =   @                              ");
@@ -180,6 +195,7 @@ namespace Sonar
             Console.Write("@%#=++=%:@@@@@@@@:+ .+ .        .+.:*####**##%*+++%%*++=+@*@+@%@+#*==+++#*..-+@=-*:+=#%@#%+=+=-+@#-:");
 
             Console.ReadKey(true);
+            Console.CursorVisible = true;
         }
 
         // constructor
@@ -210,8 +226,6 @@ namespace Sonar
         // This is where execution starts
         static void Main(string[] args)
         {
-            var dir = Directory.GetCurrentDirectory();
-
             // first, draw the splash screen
             Splash();
             do
@@ -230,8 +244,8 @@ namespace Sonar
                 }
 
                 // print the victory message
-                game.Teletyper(string.Format("Congratulations! You found the enemey submarine at ({0}, {1}) in {2} steps!", game.targetX, game.targetY, game.steps));
-
+                game.Teletyper(string.Format("Congratulations! You found the enemey submarine at ({0}, {1}) in {2} steps!", game.targetY, game.targetX, game.steps));
+                
             } while (PlayAgain); // start over, if player selects 'y'
         }
     }
