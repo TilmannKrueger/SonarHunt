@@ -90,15 +90,20 @@ namespace Sonar
         // let the player make his next move
         private void MakeTurn()
         {
+            // print the prompt
             Console.WriteLine("Our current position is {0} North and {1} East. Awaiting your orders, Sir.", playerY, playerX);
-            Console.WriteLine("Move (n, e, s, w) or ping (p)?");
+            Console.Write("Move (n, e, s, w) or ping (p)? > ");
+
+            // get player input
             ClearConsoleInputQueue();
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             Console.WriteLine();
-            bool moved = false;
-            bool dontMove = false;
+
+            // Evaluate player input and update game state
             // x direction is East <-> West
             // y direction is North <-> South
+            bool moved = false;
+            bool dontMove = false;
             switch (keyInfo.Key)
             {
                 case ConsoleKey.N:
@@ -230,7 +235,7 @@ namespace Sonar
             Splash();
             do
             {
-                // create an instance of our game
+                // create an instance of our game, which initializes game state and loads resources
                 SonarHuntGame game = new SonarHuntGame();
 
                 // clear the console and print the instructions
