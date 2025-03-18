@@ -6,6 +6,19 @@ and I learned a lot modifying it. So I figured it would be a good choice for oth
 
 Have fun!
 
+## Attributions
+
+I'm a programmer, not an artist. So, I have to build upon the work of others. For this game I used the 
+following 3rd party resources:
+
+* The teletyper sound is based on
+  DIGITAL TYPING.mp3 by sidadrumbum -- https://freesound.org/s/42977/ -- License: Attribution 3.0
+
+* And the ping sound is based on
+  https://pixabay.com/sound-effects/sonar-ping-95840/ by SamsterBirdies (Freesound)
+
+Thank you very much! This little project would have been rally awful but for you!
+
 ## Platforms
 Unfortunately, Windows only, at the moment. The game relies heavily on sound, and the simplest way to play sound 
 was using the system.extensions.SoundPlayer, which is only present on Windows. If you successfully port it to 
