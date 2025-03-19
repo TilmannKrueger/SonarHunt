@@ -19,7 +19,7 @@ following 3rd party resources:
 * And the ping sound is based on
   https://pixabay.com/sound-effects/sonar-ping-95840/ by SamsterBirdies (Freesound)
 
-Thank you very much! This little project would have been rally awful but for you!
+Thank you very much! This little project would have been really awful but for you!
 
 ## Platforms
 Unfortunately, Windows only, at the moment. The game relies heavily on sound, and the simplest way to play sound 
